@@ -1,0 +1,18 @@
+<HTML>
+<HEAD><title> 접속할 때 마다 다른 그림 보여주기 </title>
+<script language="javascript">
+pic = new Array();
+for(i=0;i<=3;i++)
+{
+pic[i] = i + ".png";
+}
+i = Math.round(Math.random()*3);
+document.write(i);
+</script>
+</HEAD>
+<BODY bgcolor=EFECE7 leftmargin=0 topmargin=0>
+<script language="javascript">
+document.write("<img src=" + pic[i] + " width=200 height=262>");
+</script>
+</BODY>
+</HTML>

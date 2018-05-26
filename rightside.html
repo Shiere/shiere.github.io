@@ -1,18 +1,56 @@
-<HTML>
+l<HTML>
 <HEAD>
 	<TITLE>Shiere Blog</TITLE>
+	<LINK href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" type="text/css" />
+	<SCRIPT language="JavaScript">
+	function startWatch()
+	{
+		var now = new Date();
+		var hr = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+		hr = oneDigit(hr);
+		min = oneDigit(min);
+		sec = oneDigit(sec);
+		document.getElementById('clock').innerHTML =
+		hr + ":" + min + ":" + sec;
+		setTimeout(startWatch, 1000);
+	}
+	function oneDigit(n)
+	{
+		if (n < 10)
+			{n = "0" + n};
+		return n;
+	}
+	</SCRIPT>
+	<STYLE>
+		#clock 
+		{ 
+		font-family: 'Press Start 2P', cursive;
+		color:#559337; font-size:32px; 
+		background-color:#9CD084;
+		border-style:groove; border-width:5px; width:255px;
+		}
+	</STYLE>
 </HEAD>
-<BODY bgcolor=BLACK>
+<BODY onLoad="startWatch()" bgcolor=BLACK>
 	<CENTER>
-		<h2><B><FONT color=#FF45OO>Music</FONT></B></H2>
-		<EMBED src="Twice-Cheer_Up.mp3" height=40 width=200 loop=-1 autostart=true volume=100><BR>
-		<B><MARQUEE scrollamount=10 bgcolor=SCARLET width=200>
-			<FONT color=YELLOW>Twice - Cheer Up</FONT>
+		<h2><B><FONT color='SCARLET'>Music</FONT></B></H2>
+		<EMBED src="Twice-Cheer_Up.mp3" height=40 width=200 loop=-1 autostart=true volume=30><BR>
+		<B><MARQUEE scrollamount=10 bgcolor=#9CD084 width=200>
+			<FONT color=#559337>Twice - Cheer Up</FONT>
 		</MARQUEE></B><P>
 		<HR>
-		<h2><B><FONT color=#FF45OO>Notepad</FONT></B></H2>
+		<h2><B><FONT color='SCARLET'>Clock</FONT></B></H2>
+	</CENTER>
+		<div id="clock">
+		</div>
+	<CENTER>
+		<HR>
+		<h2><B><FONT color='SCARLET'>Notepad</FONT></B></H2>
 		<FORM>
-			<textarea name=notepad cols=20 rows=15></textarea>
+			<textarea name=notepad cols=30 rows=15>
+			</textarea>
 			<P><input type=RESET value="Erase All">
 		</FORM>
 	</CENTER>
