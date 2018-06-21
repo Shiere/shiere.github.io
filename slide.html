@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <title>Mario</title>
+     <style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 135px;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 270px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 100px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
+  </head>
+  <body>
+    <div class="slide">
+      <img id="back" src="back.png" alt="" width="50">
+      <ul>
+        <li><img src="Mario_Char.png" alt="" width="135" height="150"></li>
+        <li><img src="Luigi.png" alt="" width="135" height="150"></li>
+      </ul>
+      <img id="next" src="next.png" alt="" width="50">
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
+
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
+
+      //버튼을 클릭했을 때 함수 실행
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
+
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=135px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=135px'
+          });
+          img_position++;
+        }
+      }
+    });
+  </script>
+</html>

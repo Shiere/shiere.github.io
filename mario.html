@@ -1,10 +1,47 @@
 <HTML>
 <HEAD>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<title>Shiere Blog</title>
 	<style type="text/css">
 		table{border:ridge 5px #878787}
 		th{font-size:30px; color:#559337; background-color:#9CD084}
 	</style>
+     	<style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 135px;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 270px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 100px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
 </HEAD>
 <BODY bgcolor=BLACK>
 	<CENTER>
@@ -39,7 +76,15 @@
 			</FONT></div></TD>
 		</TR>
 		<TR>
-			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Mario_Char.png"><IMG src="Luigi.png"></div></CENTER></TD>
+			<TD><CENTER>
+   			<div class="slide">
+      			<img id="back" src="back.png" alt="" width="50">
+    			  <ul>
+     				   <li><img src="Mario_Char.png" alt="" width="135" height="150"></li>
+     				   <li><img src="Luigi.png" alt="" width="135" height="150"></li>
+     			 </ul>
+     			 <img id="next" src="next.png" alt="" width="50">
+   			 </div></CENTER></TD>
 			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Koopa.png"></div></CENTER></TD>
 			<TD><CENTER><IMG src="Peach.png"></CENTER></TD>
 		</TR>
@@ -57,4 +102,39 @@
 	</TABLE>
 	</CENTER>
 </BODY>
-</HTML>
+
+ <script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
+
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
+
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
+
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=135px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=135px'
+          });
+          img_position++;
+        }
+      }
+    });
+  </script>
+</html>

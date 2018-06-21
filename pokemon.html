@@ -1,10 +1,47 @@
 <HTML>
 <HEAD>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<title>Shiere Blog</title>
 	<style type="text/css">
 		table{border:ridge 5px #878787}
 		th{font-size:30px; color:#559337; background-color:#9CD084}
 	</style>
+    	<style media="screen">
+      *{
+        margin: 0; padding: 0;
+      }
+      .slide{
+        width: 162px;
+        height: 150px;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+      }
+      .slide ul{
+        width: 324px;
+        position: absolute;
+        top:0;
+        left:0;
+        font-size: 0;
+      }
+      .slide ul li{
+        display: inline-block;
+      }
+      #back{
+        position: absolute;
+        top: 100px;
+        left: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+      #next{
+        position: absolute;
+        top: 100px;
+        right: 0;
+        cursor: pointer;
+        z-index: 1;
+      }
+     </style>
 </HEAD>
 <BODY bgcolor=BLACK>
 	<CENTER>
@@ -22,7 +59,15 @@
 		</div></TD>
 		</TR>
 		<TR>
-			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Pokemon_UltraSun.jpg"><IMG src="Pokemon_UltraMoon.jpg"></div></CENTER></TD>
+			<TD><CENTER>
+   			<div class="slide">
+      			<img id="back" src="back.png" alt="" width="50">
+    			  <ul>
+     				   <li><img src="Pokemon_UltraSun.jpg" alt="" width="162" height="150"></li>
+     				   <li><img src="Pokemon_UltraMoon.jpg" alt="" width="162" height="150"></li>
+     			 </ul>
+     			 <img id="next" src="next.png" alt="" width="50">
+   			 </div></CENTER></TD>
 			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Pokemon_GO.jpg"></div></CENTER></TD>
 			<TD><CENTER><IMG src="Pokemon_Gameplay.png"></CENTER></TD>
 		</TR>
@@ -39,7 +84,15 @@
 		</TR>
 		<TR>
 			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Pokemons.jpg"></div></CENTER></TD>
-			<TD><CENTER><div style="border-right:5px ridge #FF4500"><IMG src="Pokemon_Hero.png"><IMG src="Pokemon_Heroine.jpg"></div></CENTER></TD>
+			<TD><CENTER>
+   			<div class="slide">
+      			<img id="back" src="back.png" alt="" width="50">
+    			  <ul>
+     				   <li><img src="Pokemon_Hero.png" alt="" width="162" height="150"></li>
+     				   <li><img src="Pokemon_Heroine.jpg" alt="" width="162" height="150"></li>
+     			 </ul>
+     			 <img id="next" src="next.png" alt="" width="50">
+   			 </div></CENTER></TD>
 			<TD><CENTER><IMG src="Ash.png"></CENTER></TD>
 		</TR>
 		<TR>
@@ -56,4 +109,39 @@
 	</TABLE>
 	</CENTER>
 </BODY>
-</HTML>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+      var imgs;
+      var img_count;
+      var img_position = 1;
+
+      imgs = $(".slide ul");
+      img_count = imgs.children().length;
+
+      $('#back').click(function () {
+        back();
+      });
+      $('#next').click(function () {
+        next();
+      });
+
+      function back() {
+        if(1<img_position){
+          imgs.animate({
+            left:'+=162px'
+          });
+          img_position--;
+        }
+      }
+      function next() {
+        if(img_count>img_position){
+          imgs.animate({
+            left:'-=162px'
+          });
+          img_position++;
+        }
+      }
+    });
+  </script>
+</html>
